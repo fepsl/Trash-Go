@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://fase3tscn"]
+
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="1_fase3"]
+[ext_resource type="Texture2D" uid="uid://bg1i50kuoot0h" path="res://assets/backgrounds/Industrial/bg.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://djs6jtmtmf4iv" path="res://assets/backgrounds/Industrial/far-buildings.png" id="3_far"]
+[ext_resource type="Texture2D" uid="uid://xfbjtpubkq5o" path="res://assets/backgrounds/Industrial/buildings.png" id="4_buildings"]
+[ext_resource type="Texture2D" uid="uid://bn4x30glvr1w1" path="res://assets/backgrounds/Industrial/skill-foreground.png" id="5_fg"]
+
+[sub_resource type="RectangleShape2D" id="BoxShape2D_chao"]
+size = Vector2(20000, 60)
+
+[node name="Fase3" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="LayerBg" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.02, 0)
+motion_mirroring = Vector2(2176, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerBg"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(8.0, 8.0)
+texture = ExtResource("2_bg")
+
+[node name="LayerFarBuildings" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(1704, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerFarBuildings"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(8.0, 8.0)
+texture = ExtResource("3_far")
+
+[node name="LayerBuildings" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0)
+motion_mirroring = Vector2(2176, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerBuildings"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(8.0, 8.0)
+texture = ExtResource("4_buildings")
+
+[node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0)
+motion_mirroring = Vector2(2176, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerForeground"]
+centered = false
+position = Vector2(0, -127)
+scale = Vector2(8.0, 8.0)
+texture = ExtResource("5_fg")
+
+[node name="InfoUI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="LabelArea" type="Label" parent="InfoUI"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 750.0
+offset_bottom = 70.0
+text = "Área: Metal"
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(10000, 370)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("BoxShape2D_chao")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("1_fase3")
+fase_numero = 3

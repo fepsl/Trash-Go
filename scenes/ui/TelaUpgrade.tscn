@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://telaupgradetscn"]
+
+[ext_resource type="Script" path="res://scripts/TelaUpgrade.gd" id="1_upgrade"]
+
+[node name="TelaUpgrade" type="CanvasLayer"]
+layer = 10
+visible = false
+script = ExtResource("1_upgrade")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.1, 0.05, 0.95)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -160.0
+offset_right = 150.0
+offset_bottom = 160.0
+alignment = 1
+
+[node name="LabelTitulo" type="Label" parent="VBoxContainer"]
+text = "— Upgrades —"
+horizontal_alignment = 1
+
+[node name="LabelMateriais" type="Label" parent="VBoxContainer"]
+text = "Materiais: 0"
+horizontal_alignment = 1
+
+[node name="BotaoVida" type="Button" parent="VBoxContainer"]
+text = "+25 Vida  (Custo: 5)"
+
+[node name="BotaoDano" type="Button" parent="VBoxContainer"]
+text = "+5 Dano  (Custo: 8)"
+
+[node name="BotaoRecarga" type="Button" parent="VBoxContainer"]
+text = "-Recarga Ataque  (Custo: 6)"
+
+[node name="BotaoVelocidade" type="Button" parent="VBoxContainer"]
+text = "+Velocidade  (Custo: 7)"
+
+[node name="BotaoContinuar" type="Button" parent="VBoxContainer"]
+text = "Continuar"
+
+[connection signal="pressed" from="VBoxContainer/BotaoVida" to="." method="_on_vida_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoDano" to="." method="_on_dano_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoRecarga" to="." method="_on_recarga_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoVelocidade" to="." method="_on_velocidade_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoContinuar" to="." method="_on_continuar_pressed"]

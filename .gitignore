@@ -1,0 +1,48 @@
+# Cache gerado pelo editor Godot — nunca commitar
+.godot/
+
+# Exports gerados pelo Godot
+exports/
+
+# Arquivos fonte dos packs de assets (não usados em runtime)
+*.psd
+*.pdf
+
+# Documentação dos packs de assets
+assets/backgrounds/Floresta/Contact.txt
+assets/backgrounds/Floresta/changelog.txt
+assets/backgrounds/Floresta/readme.txt
+assets/backgrounds/Floresta/You may also like/
+assets/backgrounds/Floresta/Preview/
+
+# Arquivos fonte de design (Aseprite)
+*.aseprite
+assets/HUD/Complete_UI_Essential_Pack_Free/License.txt
+assets/HUD/Complete_UI_Essential_Pack_Free/Thank You for Purchasing!.txt
+
+# Pasta web do Industrial (PDFs e assets duplicados)
+assets/backgrounds/Industrial/parallax-industrial-web/
+
+# Projeto Godot embutido do pack SynthCities (só as layers PNG são usadas)
+assets/backgrounds/Cidade/SynthCitiesGodot/project.godot
+assets/backgrounds/Cidade/SynthCitiesGodot/icon.svg
+assets/backgrounds/Cidade/SynthCitiesGodot/icon.svg.import
+assets/backgrounds/Cidade/SynthCitiesGodot/auto_scroller.gdshader
+assets/backgrounds/Cidade/SynthCitiesGodot/auto_scroller.tscn
+assets/backgrounds/Cidade/SynthCitiesGodot/Music/
+
+# Gigapack de effects — só a pasta Explosions é usada pelo jogo
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Fantasy Spells/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Impacts/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Lightning/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Magic Bursts/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Sci-fi/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Smoke Bursts/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Splatters/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Symbols/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/spritesheet/
+assets/effects/Super Pixel Effects Gigapack (Free Version)/asset_list.txt
+assets/effects/Super Pixel Effects Gigapack (Free Version)/changelog.txt
+assets/effects/Super Pixel Effects Gigapack (Free Version)/guide.txt
+assets/effects/Super Pixel Effects Gigapack (Free Version)/license.txt
+assets/effects/Super Pixel Effects Gigapack (Free Version)/readme.txt

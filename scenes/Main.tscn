@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://main"]
+
+[ext_resource type="PackedScene" uid="uid://playertscn" path="res://scenes/Player.tscn" id="1_main"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="2_main"]
+[ext_resource type="PackedScene" uid="uid://hudtscn" path="res://scenes/ui/HUD.tscn" id="3_main"]
+[ext_resource type="PackedScene" uid="uid://telainiciotscn" path="res://scenes/ui/TelaInicio.tscn" id="4_main"]
+[ext_resource type="PackedScene" uid="uid://telagameoverrtscn" path="res://scenes/ui/TelaGameOver.tscn" id="5_main"]
+[ext_resource type="PackedScene" uid="uid://telaupgradetscn" path="res://scenes/ui/TelaUpgrade.tscn" id="6_main"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("2_main")
+
+[node name="Player" parent="." instance=ExtResource("1_main")]
+position = Vector2(100, 300)
+
+[node name="HUD" parent="." instance=ExtResource("3_main")]
+
+[node name="TelaInicio" parent="." instance=ExtResource("4_main")]
+
+[node name="TelaGameOver" parent="." instance=ExtResource("5_main")]
+
+[node name="TelaUpgrade" parent="." instance=ExtResource("6_main")]

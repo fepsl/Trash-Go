@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://fase1tscn"]
+
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="1_fase1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0011_0.png" id="2_l11"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0010_1.png" id="3_l10"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0009_2.png" id="4_l9"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0008_3.png" id="5_l8"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0007_Lights.png" id="6_l7"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0006_4.png" id="7_l6"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0005_5.png" id="8_l5"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0004_Lights.png" id="9_l4"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0003_6.png" id="10_l3"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0002_7.png" id="11_l2"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0001_8.png" id="12_l1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Floresta/PNG/Background layers/Layer_0000_9.png" id="13_l0"]
+
+[sub_resource type="RectangleShape2D" id="BoxShape2D_chao"]
+size = Vector2(20000, 60)
+
+[node name="Fase1" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Layer11" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.02, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer11"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_l11")
+
+[node name="Layer10" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer10"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_l10")
+
+[node name="Layer9" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.08, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer9"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_l9")
+
+[node name="Layer8" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.12, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer8"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_l8")
+
+[node name="Layer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.15, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer7"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_l7")
+
+[node name="Layer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.20, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer6"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_l6")
+
+[node name="Layer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer5"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_l5")
+
+[node name="Layer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.28, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer4"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_l4")
+
+[node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.35, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer3"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_l3")
+
+[node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.50, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer2"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_l2")
+
+[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.70, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_l1")
+
+[node name="Layer0" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.90, 0)
+motion_mirroring = Vector2(1392, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer0"]
+centered = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_l0")
+
+[node name="InfoUI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="LabelArea" type="Label" parent="InfoUI"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 750.0
+offset_bottom = 40.0
+text = "Área: Papel Reciclável"
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(10000, 370)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("BoxShape2D_chao")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("1_fase1")
+fase_numero = 1

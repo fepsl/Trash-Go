@@ -1,0 +1,81 @@
+extends Node
+
+enum Estado { INICIO, JOGANDO, BOSS, UPGRADE, GAME_OVER }
+enum Poder { ESCUDO = 0, ATAQUE_AREA = 1, PROJETIL = 2, VELOCIDADE = 3, CURA_AO_MATAR = 4, RICOCHETE = 5 }
+
+const VIDA_INICIAL: int = 100
+const NUM_PODERES: int = 6
+const TOTAL_FASES: int = 4
+
+var estado_atual: Estado = Estado.INICIO
+var vida_atual: int = VIDA_INICIAL
+var vida_maxima: int = VIDA_INICIAL
+var materiais: int = 0
+var poderes_ativos: Array = []
+var fase_atual: int = 1
+
+signal material_coletado(qtd: int)
+signal vida_atualizada(atual: int, max: int)
+signal poder_concedido(poder: String)
+signal estado_mudou(novo_estado: Estado)
+
+func _ready() -> void:
+	resetar_estado()
+
+func resetar_estado() -> void:
+	vida_maxima = VIDA_INICIAL
+	vida_atual = VIDA_INICIAL
+	materiais = 0
+	poderes_ativos.clear()
+	fase_atual = 1
+	vida_atualizada.emit(vida_atual, vida_maxima)
+	mudar_estado(Estado.INICIO)
+
+func mudar_estado(novo: Estado) -> void:
+	estado_atual = novo
+	estado_mudou.emit(novo)
+
+func registrar_player(player: Player) -> void:
+	player.player_morreu.connect(_on_player_morreu)
+
+func _on_player_morreu() -> void:
+	mudar_estado(Estado.GAME_OVER)
+
+func _on_inimigo_morreu(material_drop: int) -> void:
+	materiais += material_drop
+	material_coletado.emit(material_drop)
+	if Poder.CURA_AO_MATAR in poderes_ativos:
+		vida_atual = min(vida_atual + 5, vida_maxima)
+		vida_atualizada.emit(vida_atual, vida_maxima)
+
+func _on_fase_completa() -> void:
+	mudar_estado(Estado.BOSS)
+
+func _on_boss_derrotado() -> void:
+	conceder_poder_aleatorio()
+	fase_atual = (fase_atual % TOTAL_FASES) + 1
+	mudar_estado(Estado.UPGRADE)
+
+func conceder_poder_aleatorio() -> void:
+	var nao_coletados: Array[int] = []
+	for i in range(NUM_PODERES):
+		if i not in poderes_ativos:
+			nao_coletados.append(i)
+	var poder: int
+	if nao_coletados.is_empty():
+		poder = randi() % NUM_PODERES
+	else:
+		poder = nao_coletados[randi() % nao_coletados.size()]
+	if poder not in poderes_ativos:
+		poderes_ativos.append(poder)
+	poder_concedido.emit(_nome_poder(poder))
+
+func _nome_poder(poder: int) -> String:
+	match poder:
+		Poder.ESCUDO: return "Escudo"
+		Poder.ATAQUE_AREA: return "Ataque em Área"
+		Poder.PROJETIL: return "Projétil"
+		Poder.VELOCIDADE: return "Velocidade+"
+		Poder.CURA_AO_MATAR: return "Cura ao Matar"
+		Poder.RICOCHETE: return "Ricochete"
+		_: return "Poder"
