@@ -8,6 +8,7 @@ const GRAVIDADE: float = 980.0
 @export var velocidade: float = VELOCIDADE_BASE
 @export var dano_ataque: int = 10
 
+var em_combate: bool = false
 var _hitbox: Area2D
 var _timer_ataque: Timer
 var _escudo_carregado: bool = false
@@ -28,7 +29,6 @@ func _ready() -> void:
 	_hitbox.area_entered.connect(_on_hitbox_area_entered)
 	_timer_ataque = $TimerAtaque
 	_timer_ataque.timeout.connect(_on_timer_ataque_timeout)
-	$HurtBox.body_entered.connect(_on_hurtbox_body_entered)
 	GameManager.poder_concedido.connect(_on_poder_concedido)
 	_timer_recarga_escudo = Timer.new()
 	_timer_recarga_escudo.one_shot = true
@@ -41,10 +41,13 @@ func _physics_process(delta: float) -> void:
 	if GameManager.estado_atual not in estados_ativos or _morrendo:
 		return
 
-	var vel_atual: float = velocidade
-	if GameManager.Poder.VELOCIDADE in GameManager.poderes_ativos:
-		vel_atual *= 1.5
-	velocity.x = vel_atual
+	if em_combate:
+		velocity.x = 0.0
+	else:
+		var vel_atual: float = velocidade
+		if GameManager.Poder.VELOCIDADE in GameManager.poderes_ativos:
+			vel_atual *= 1.5
+		velocity.x = vel_atual
 
 	if not is_on_floor():
 		velocity.y += GRAVIDADE * delta
@@ -78,6 +81,7 @@ func reiniciar_posicao() -> void:
 	global_position = Vector2(100.0, 300.0)
 	velocity = Vector2.ZERO
 	_morrendo = false
+	em_combate = false
 
 func reduzir_recarga_ataque(valor: float) -> void:
 	_timer_ataque.wait_time = max(0.03, _timer_ataque.wait_time - valor)
@@ -96,7 +100,7 @@ func _atualizar_animacao() -> void:
 	if _atacando or _morrendo:
 		return
 	var estados_ativos := [GameManager.Estado.JOGANDO, GameManager.Estado.BOSS]
-	if GameManager.estado_atual in estados_ativos:
+	if GameManager.estado_atual in estados_ativos and not em_combate:
 		_sprite.play("run")
 	else:
 		_sprite.play("idle")
@@ -129,12 +133,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		(parent as Inimigo).receber_dano(dano_ataque)
 	elif parent is Boss:
 		(parent as Boss).receber_dano(dano_ataque)
-
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if body is Inimigo:
-		receber_dano((body as Inimigo).DANO_BASE)
-	elif body is Boss:
-		receber_dano((body as Boss).DANO_CONTATO)
 
 func _on_poder_concedido(_nome: String) -> void:
 	if GameManager.Poder.ESCUDO in GameManager.poderes_ativos:

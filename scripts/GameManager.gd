@@ -6,6 +6,11 @@ enum Poder { ESCUDO = 0, ATAQUE_AREA = 1, PROJETIL = 2, VELOCIDADE = 3, CURA_AO_
 const VIDA_INICIAL: int = 100
 const NUM_PODERES: int = 6
 const TOTAL_FASES: int = 4
+const CUSTO_BASE_VIDA: int = 5
+const CUSTO_BASE_DANO: int = 8
+const CUSTO_BASE_RECARGA: int = 6
+const CUSTO_BASE_VELOCIDADE: int = 7
+const MULTIPLICADOR_CUSTO_UPGRADE: float = 2.0
 
 var estado_atual: Estado = Estado.INICIO
 var vida_atual: int = VIDA_INICIAL
@@ -13,6 +18,11 @@ var vida_maxima: int = VIDA_INICIAL
 var materiais: int = 0
 var poderes_ativos: Array = []
 var fase_atual: int = 1
+var num_loops: int = 0
+var nivel_upgrade_vida: int = 0
+var nivel_upgrade_dano: int = 0
+var nivel_upgrade_recarga: int = 0
+var nivel_upgrade_velocidade: int = 0
 
 signal material_coletado(qtd: int)
 signal vida_atualizada(atual: int, max: int)
@@ -28,8 +38,16 @@ func resetar_estado() -> void:
 	materiais = 0
 	poderes_ativos.clear()
 	fase_atual = 1
+	num_loops = 0
+	nivel_upgrade_vida = 0
+	nivel_upgrade_dano = 0
+	nivel_upgrade_recarga = 0
+	nivel_upgrade_velocidade = 0
 	vida_atualizada.emit(vida_atual, vida_maxima)
 	mudar_estado(Estado.INICIO)
+
+func custo_upgrade(custo_base: int, nivel: int) -> int:
+	return int(custo_base * pow(1.5, nivel))
 
 func mudar_estado(novo: Estado) -> void:
 	estado_atual = novo
@@ -42,8 +60,9 @@ func _on_player_morreu() -> void:
 	mudar_estado(Estado.GAME_OVER)
 
 func _on_inimigo_morreu(material_drop: int) -> void:
-	materiais += material_drop
-	material_coletado.emit(material_drop)
+	var drop_total := material_drop * (1 + num_loops)
+	materiais += drop_total
+	material_coletado.emit(drop_total)
 	if Poder.CURA_AO_MATAR in poderes_ativos:
 		vida_atual = min(vida_atual + 5, vida_maxima)
 		vida_atualizada.emit(vida_atual, vida_maxima)
@@ -53,6 +72,8 @@ func _on_fase_completa() -> void:
 
 func _on_boss_derrotado() -> void:
 	conceder_poder_aleatorio()
+	if fase_atual == TOTAL_FASES:
+		num_loops += 1
 	fase_atual = (fase_atual % TOTAL_FASES) + 1
 	mudar_estado(Estado.UPGRADE)
 

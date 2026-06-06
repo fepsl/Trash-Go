@@ -43,7 +43,12 @@ func _carregar_fase() -> void:
 	_fase_node.get_node("EnemySpawner").fase_completa.connect(GameManager._on_fase_completa)
 	$Player.reiniciar_posicao()
 
+const MULT_BOSS_POR_FASE: Array[float] = [1.0, 1.3, 1.8, 2.5]
+
 func _spawnar_boss() -> void:
 	var boss: Boss = preload("res://scenes/enemies/Boss.tscn").instantiate() as Boss
-	boss.global_position = Vector2($Player.global_position.x + 500.0, $Player.global_position.y)
+	var mult_fase: float = MULT_BOSS_POR_FASE[GameManager.fase_atual - 1]
+	var mult_loop: float = 1.0 + GameManager.num_loops * 0.4
+	boss.multiplicador_vida = mult_fase * mult_loop
+	boss.global_position = Vector2($Player.global_position.x + 1200.0, $Player.global_position.y)
 	add_child(boss)
