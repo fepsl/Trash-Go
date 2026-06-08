@@ -63,5 +63,6 @@ animations = [{
 }]
 
 [node name="EfeitoMorte" type="AnimatedSprite2D"]
+scale = Vector2(3.0, 3.0)
 script = ExtResource("1_script")
 sprite_frames = SubResource("SpriteFrames_1")

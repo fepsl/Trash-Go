@@ -1,7 +1,7 @@
 class_name Inimigo
 extends CharacterBody2D
 
-const DANO_BASE: int = 10
+const DANO_BASE: int = 7
 const GRAVIDADE: float = 980.0
 
 @export var margem_ataque: float = 70.0
@@ -29,7 +29,7 @@ func _ready() -> void:
 	inimigo_morreu.connect(GameManager._on_inimigo_morreu)
 	_player = get_tree().get_first_node_in_group("player") as Player
 	_timer_ataque = Timer.new()
-	_timer_ataque.wait_time = 1.0
+	_timer_ataque.wait_time = max(0.4, 1.5 - GameManager.num_loops * 0.25)
 	_timer_ataque.timeout.connect(_atacar_player)
 	add_child(_timer_ataque)
 
@@ -87,7 +87,7 @@ func _flash_hit() -> void:
 
 func _atacar_player() -> void:
 	if _player and is_instance_valid(_player):
-		_player.receber_dano(DANO_BASE)
+		_player.receber_dano(DANO_BASE + GameManager.num_loops * 7)
 
 func _separar_de_outros_inimigos() -> void:
 	if not _player or abs(_player.global_position.x - global_position.x) <= margem_ataque:

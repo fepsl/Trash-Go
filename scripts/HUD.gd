@@ -16,7 +16,6 @@ const NOMES_CURTOS: Dictionary = {
 @onready var barra_vida: TextureProgressBar = $PainelVida/ConteudoVida/BarraVida
 @onready var label_vida: Label = $PainelVida/ConteudoVida/LabelVida
 @onready var label_materiais: Label = $PainelMateriais/ConteudoMateriais/LabelMateriais
-@onready var label_fase: Label = $LabelFase
 @onready var notif_poder: Label = $NotifPoder
 @onready var timer_notif: Timer = $TimerNotif
 @onready var painel_poderes: HBoxContainer = $PainelPoderes
@@ -37,7 +36,6 @@ func _ready() -> void:
 	barra_vida.value = GameManager.vida_atual
 	label_vida.text = "%d/%d" % [GameManager.vida_atual, GameManager.vida_maxima]
 	label_materiais.text = "%d" % GameManager.materiais
-	label_fase.text = "Fase %d" % GameManager.fase_atual
 	_atualizar_visibilidade(GameManager.estado_atual)
 
 func _on_vida_atualizada(atual: int, max: int) -> void:
@@ -64,7 +62,6 @@ func _on_timer_notif_timeout() -> void:
 
 func _on_estado_mudou(novo_estado: GameManager.Estado) -> void:
 	_atualizar_visibilidade(novo_estado)
-	label_fase.text = "Fase %d" % GameManager.fase_atual
 
 func _atualizar_visibilidade(estado: GameManager.Estado) -> void:
 	var visivel := estado in [

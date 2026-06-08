@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NonInteractive -File .claude/hooks/block-dangerous-git.ps1",
+            "shell": "powershell",
+            "statusMessage": "Verificando git-guardrails..."
+          }
+        ]
+      }
+    ]
+  }
+}

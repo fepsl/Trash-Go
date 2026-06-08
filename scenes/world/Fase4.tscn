@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://fase4tscn"]
+[gd_scene load_steps=3 format=3 uid="uid://fase4tscn"]
 
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="1_fase4"]
-[ext_resource type="Texture2D" uid="uid://choh2biqjragx" path="res://assets/backgrounds/Cidade/back.png" id="2_back"]
-[ext_resource type="Texture2D" uid="uid://byptt77khwuwo" path="res://assets/backgrounds/Cidade/middle.png" id="3_middle"]
-[ext_resource type="Texture2D" uid="uid://bu3ta5i6s5xpa" path="res://assets/backgrounds/Cidade/foreground.png" id="4_fg"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Industrial/fase4.jpg" id="2_back"]
 
 [sub_resource type="RectangleShape2D" id="BoxShape2D_chao"]
 size = Vector2(20000, 60)
@@ -13,41 +11,17 @@ size = Vector2(20000, 60)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="LayerBack" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.05, 0)
-motion_mirroring = Vector2(560, 0)
+motion_scale = Vector2(0.05, 1.0)
+motion_mirroring = Vector2(2170, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerBack"]
 centered = false
-position = Vector2(0, -400)
-scale = Vector2(5.0, 5.0)
+position = Vector2(0, -190)
+scale = Vector2(1.9, 1.9)
 texture = ExtResource("2_back")
-
-[node name="LayerMiddle" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.25, 0)
-motion_mirroring = Vector2(1280, 0)
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerMiddle"]
-centered = false
-position = Vector2(0, -400)
-scale = Vector2(5.0, 5.0)
-texture = ExtResource("3_middle")
-
-[node name="LayerForeground" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.6, 0)
-motion_mirroring = Vector2(3440, 0)
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerForeground"]
-centered = false
-position = Vector2(0, -400)
-scale = Vector2(5.0, 5.0)
-texture = ExtResource("4_fg")
 
 [node name="InfoUI" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="LabelArea" type="Label" parent="InfoUI"]
-offset_left = 450.0
-offset_top = 10.0
-offset_right = 750.0
-offset_bottom = 40.0
-text = "Área: Orgânico"
 
 [node name="Chao" type="StaticBody2D" parent="."]
 position = Vector2(10000, 370)

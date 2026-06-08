@@ -1,7 +1,7 @@
 class_name EnemySpawner
 extends Node2D
 
-const MULT_VIDA_POR_FASE: Array[float] = [1.0, 1.3, 1.8, 2.5]
+const MULT_VIDA_POR_FASE: Array[float] = [1.0, 1.2, 1.5, 2.0]
 
 @export var fase_numero: int = 1
 
@@ -78,7 +78,7 @@ func _lancar_onda(onda: Dictionary) -> void:
 	var quantidade: int = onda["quantidade"]
 	var pos_x: float = onda["posicao_x"] + 600.0
 	var mult_fase: float = MULT_VIDA_POR_FASE[fase_numero - 1]
-	var mult_loop: float = 1.0 + GameManager.num_loops * 0.4
+	var mult_loop: float = 1.0 + GameManager.num_loops * 0.55
 	var mult: float = mult_fase * mult_loop
 
 	for i in range(quantidade):

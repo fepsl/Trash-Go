@@ -3,7 +3,7 @@ extends Node
 enum Estado { INICIO, JOGANDO, BOSS, UPGRADE, GAME_OVER }
 enum Poder { ESCUDO = 0, ATAQUE_AREA = 1, PROJETIL = 2, VELOCIDADE = 3, CURA_AO_MATAR = 4, RICOCHETE = 5 }
 
-const VIDA_INICIAL: int = 100
+const VIDA_INICIAL: int = 150
 const NUM_PODERES: int = 6
 const TOTAL_FASES: int = 4
 const CUSTO_BASE_VIDA: int = 5
@@ -64,7 +64,7 @@ func _on_inimigo_morreu(material_drop: int) -> void:
 	materiais += drop_total
 	material_coletado.emit(drop_total)
 	if Poder.CURA_AO_MATAR in poderes_ativos:
-		vida_atual = min(vida_atual + 5, vida_maxima)
+		vida_atual = min(vida_atual + max(1, 5 - num_loops * 2), vida_maxima)
 		vida_atualizada.emit(vida_atual, vida_maxima)
 
 func _on_fase_completa() -> void:

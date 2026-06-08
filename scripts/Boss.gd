@@ -1,9 +1,9 @@
 class_name Boss
 extends CharacterBody2D
 
-const VIDA_BASE: int = 300
-const DANO_CONTATO: int = 20
-const DANO_AREA: int = 30
+const VIDA_BASE: int = 220
+const DANO_CONTATO: int = 12
+const DANO_AREA: int = 18
 const GRAVIDADE: float = 980.0
 const MARGEM_ATAQUE: float = 200.0
 const _IDLE_FRAME_H: float = 216.0
@@ -24,7 +24,7 @@ var _sprite_y_base: float
 signal boss_derrotado
 
 func _ready() -> void:
-	vida_atual = int(VIDA_BASE * multiplicador_vida)
+	vida_atual = int(VIDA_BASE * multiplicador_vida * (1.0 + GameManager.num_loops * 0.35))
 	_sprite_y_base = $AnimatedSprite2D.position.y
 	_player = get_tree().get_first_node_in_group("player") as Player
 	add_to_group("inimigos")
@@ -89,7 +89,7 @@ func _morrer() -> void:
 
 func _on_timer_ataque_timeout() -> void:
 	if _em_range and _player and is_instance_valid(_player):
-		_player.receber_dano(DANO_CONTATO)
+		_player.receber_dano(DANO_CONTATO + GameManager.num_loops * 6)
 	if _fase_agressiva:
 		_atacar_area()
 	_timer_ataque.start()
@@ -103,4 +103,4 @@ func _atacar_area() -> void:
 func _on_hitbox_ataque_area_entered(area: Area2D) -> void:
 	var parent: Node = area.get_parent()
 	if parent is Player:
-		(parent as Player).receber_dano(DANO_AREA)
+		(parent as Player).receber_dano(DANO_AREA + GameManager.num_loops * 9)

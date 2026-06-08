@@ -18,8 +18,8 @@ textura_slot_inativo = ExtResource("6_slot02a")
 [node name="PainelVida" type="NinePatchRect" parent="."]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 300.0
-offset_bottom = 65.0
+offset_right = 320.0
+offset_bottom = 72.0
 texture = ExtResource("2_frame01")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -36,15 +36,18 @@ offset_bottom = -6.0
 theme_override_constants/separation = 5
 
 [node name="LabelIconeVida" type="Label" parent="PainelVida/ConteudoVida"]
-custom_minimum_size = Vector2(18, 0)
+custom_minimum_size = Vector2(24, 0)
+size_flags_vertical = 4
 text = "♥"
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 
 [node name="BarraVida" type="TextureProgressBar" parent="PainelVida/ConteudoVida"]
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(140, 22)
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 28)
+nine_patch_stretch = true
 texture_under = ExtResource("3_bar01")
 texture_progress = ExtResource("4_barfill")
 max_value = 100.0
@@ -52,19 +55,20 @@ value = 100.0
 tint_progress = Color(0.2, 0.85, 0.3, 1)
 
 [node name="LabelVida" type="Label" parent="PainelVida/ConteudoVida"]
-custom_minimum_size = Vector2(74, 0)
+custom_minimum_size = Vector2(80, 0)
+size_flags_vertical = 4
 text = "100/100"
 horizontal_alignment = 2
 vertical_alignment = 1
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 
 [node name="PainelMateriais" type="NinePatchRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -170.0
+offset_left = -320.0
 offset_top = 10.0
 offset_right = -10.0
-offset_bottom = 55.0
+offset_bottom = 72.0
 texture = ExtResource("5_slot01a")
 patch_margin_left = 8
 patch_margin_top = 8
@@ -82,39 +86,30 @@ alignment = 1
 theme_override_constants/separation = 5
 
 [node name="LabelIconeMat" type="Label" parent="PainelMateriais/ConteudoMateriais"]
+size_flags_vertical = 4
 text = "♻"
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 
 [node name="LabelMateriais" type="Label" parent="PainelMateriais/ConteudoMateriais"]
+size_flags_vertical = 4
 text = "0"
 vertical_alignment = 1
-theme_override_font_sizes/font_size = 14
-
-[node name="LabelFase" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -70.0
-offset_top = 12.0
-offset_right = 70.0
-offset_bottom = 42.0
-text = "Fase 1"
-horizontal_alignment = 1
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(1, 1, 0.85, 1)
+
 
 [node name="PainelPoderes" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -62.0
-offset_right = 316.0
+offset_top = -74.0
+offset_right = 400.0
 offset_bottom = -10.0
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 
 [node name="SlotPoder0" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -128,10 +123,10 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="SlotPoder1" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -145,10 +140,10 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="SlotPoder2" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -162,10 +157,10 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="SlotPoder3" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -179,10 +174,10 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="SlotPoder4" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -196,10 +191,10 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="SlotPoder5" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(60, 60)
 texture = ExtResource("6_slot02a")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -213,7 +208,7 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = false
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 
 [node name="NotifPoder" type="Label" parent="."]
 anchor_left = 0.5

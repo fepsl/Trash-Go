@@ -32,7 +32,7 @@ func _ready() -> void:
 	GameManager.poder_concedido.connect(_on_poder_concedido)
 	_timer_recarga_escudo = Timer.new()
 	_timer_recarga_escudo.one_shot = true
-	_timer_recarga_escudo.wait_time = 8.0
+	_timer_recarga_escudo.wait_time = 5.0
 	_timer_recarga_escudo.timeout.connect(_recarregar_escudo)
 	add_child(_timer_recarga_escudo)
 
@@ -84,7 +84,7 @@ func reiniciar_posicao() -> void:
 	em_combate = false
 
 func reduzir_recarga_ataque(valor: float) -> void:
-	_timer_ataque.wait_time = max(0.03, _timer_ataque.wait_time - valor)
+	_timer_ataque.wait_time = max(0.3, _timer_ataque.wait_time - valor)
 
 func _flash_hit() -> void:
 	if _tomando_dano:
