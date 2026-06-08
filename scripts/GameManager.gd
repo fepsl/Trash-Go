@@ -63,7 +63,7 @@ func _on_inimigo_morreu(material_drop: int) -> void:
 	materiais += drop_total
 	material_coletado.emit(drop_total)
 	if Poder.CURA_AO_MATAR in poderes_ativos:
-		vida_atual = min(vida_atual + max(1, 5 - num_loops * 2), vida_maxima)
+		vida_atual = min(vida_atual + max(2, 8 - num_loops * 2), vida_maxima)
 		vida_atualizada.emit(vida_atual, vida_maxima)
 
 func _on_fase_completa() -> void:

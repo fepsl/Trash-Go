@@ -1,0 +1,13 @@
+# Godot 4
+.godot/
+
+# Exports
+exports/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Editor configs
+*.tmp
+*.bak
