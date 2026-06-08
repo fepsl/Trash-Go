@@ -38,10 +38,10 @@ func _ready() -> void:
 	label_materiais.text = "%d" % GameManager.materiais
 	_atualizar_visibilidade(GameManager.estado_atual)
 
-func _on_vida_atualizada(atual: int, max: int) -> void:
-	barra_vida.max_value = max
+func _on_vida_atualizada(atual: int, vida_max: int) -> void:
+	barra_vida.max_value = vida_max
 	barra_vida.value = atual
-	label_vida.text = "%d/%d" % [atual, max]
+	label_vida.text = "%d/%d" % [atual, vida_max]
 
 func _on_material_coletado(_qtd: int) -> void:
 	label_materiais.text = "%d" % GameManager.materiais

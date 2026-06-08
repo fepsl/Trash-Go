@@ -32,51 +32,47 @@ func _process(_delta: float) -> void:
 		_ondas_lancadas += 1
 
 func _configurar_ondas(numero: int) -> void:
-	var lixo_papel: PackedScene = preload("res://scenes/enemies/Lixo.tscn")
-	var lixo_plastico: PackedScene = preload("res://scenes/enemies/Lixo.tscn")
-	var lixo_metal: PackedScene = preload("res://scenes/enemies/Lixo.tscn")
-	var lixo_organico: PackedScene = preload("res://scenes/enemies/Lixo.tscn")
+	var lixo: PackedScene = preload("res://scenes/enemies/Lixo.tscn")
 	var lixo_especial: PackedScene = preload("res://scenes/enemies/LixoEspecial.tscn")
 	var n := GameManager.num_loops
 
 	match numero:
 		1: # Papel
 			_ondas = [
-				{ "cena": lixo_papel,    "quantidade": 2 + n, "posicao_x": 500.0 },
-				{ "cena": lixo_papel,    "quantidade": 3 + n, "posicao_x": 1500.0 },
+				{ "cena": lixo,         "quantidade": 2 + n, "posicao_x": 500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n, "posicao_x": 1500.0 },
 				{ "cena": lixo_especial, "quantidade": 1 + n, "posicao_x": 2500.0 },
-				{ "cena": lixo_papel,    "quantidade": 3 + n, "posicao_x": 3500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n, "posicao_x": 3500.0 },
 			]
 		2: # Plastico
 			_ondas = [
-				{ "cena": lixo_plastico, "quantidade": 2 + n, "posicao_x": 500.0 },
-				{ "cena": lixo_plastico, "quantidade": 3 + n, "posicao_x": 1500.0 },
+				{ "cena": lixo,         "quantidade": 2 + n, "posicao_x": 500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n, "posicao_x": 1500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n, "posicao_x": 2500.0 },
-				{ "cena": lixo_plastico, "quantidade": 3 + n, "posicao_x": 3500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n, "posicao_x": 3500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n, "posicao_x": 4500.0 },
 			]
 		3: # Metal
 			_ondas = [
-				{ "cena": lixo_metal,    "quantidade": 3 + n, "posicao_x": 500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n, "posicao_x": 500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n, "posicao_x": 1500.0 },
-				{ "cena": lixo_metal,    "quantidade": 4 + n, "posicao_x": 2500.0 },
+				{ "cena": lixo,         "quantidade": 4 + n, "posicao_x": 2500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n, "posicao_x": 3500.0 },
-				{ "cena": lixo_metal,    "quantidade": 4 + n, "posicao_x": 4500.0 },
+				{ "cena": lixo,         "quantidade": 4 + n, "posicao_x": 4500.0 },
 			]
 		4: # Organico
 			_ondas = [
-				{ "cena": lixo_organico, "quantidade": 3 + n,  "posicao_x": 500.0 },
+				{ "cena": lixo,         "quantidade": 3 + n,  "posicao_x": 500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n,  "posicao_x": 1500.0 },
-				{ "cena": lixo_organico, "quantidade": 4 + n,  "posicao_x": 2500.0 },
+				{ "cena": lixo,         "quantidade": 4 + n,  "posicao_x": 2500.0 },
 				{ "cena": lixo_especial, "quantidade": 3 + n,  "posicao_x": 3500.0 },
-				{ "cena": lixo_organico, "quantidade": 4 + n,  "posicao_x": 4500.0 },
+				{ "cena": lixo,         "quantidade": 4 + n,  "posicao_x": 4500.0 },
 				{ "cena": lixo_especial, "quantidade": 2 + n,  "posicao_x": 5500.0 },
 			]
 
 func _lancar_onda(onda: Dictionary) -> void:
 	var cena: PackedScene = onda["cena"]
 	var quantidade: int = onda["quantidade"]
-	var pos_x: float = onda["posicao_x"] + 600.0
 	var mult_fase: float = MULT_VIDA_POR_FASE[fase_numero - 1]
 	var mult_loop: float = 1.0 + GameManager.num_loops * 0.55
 	var mult: float = mult_fase * mult_loop
@@ -86,9 +82,9 @@ func _lancar_onda(onda: Dictionary) -> void:
 		get_parent().add_child(inimigo)
 		inimigo.vida_base = int(inimigo.vida_base * mult)
 		inimigo.vida_atual = inimigo.vida_base
-		inimigo.slot_offset = 120.0 + i * 150.0
+		var offset: float = 120.0 + i * 150.0
 		inimigo.global_position = Vector2(
-			_player.global_position.x + inimigo.slot_offset + 500.0,
+			_player.global_position.x + offset + 500.0,
 			_player.global_position.y
 		)
 		inimigo.tree_exited.connect(_on_inimigo_saiu)

@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const DANO_BASE: int = 7
 const GRAVIDADE: float = 980.0
+const _REDUCAO_RECARGA: float = 0.04
+const _RECARGA_MINIMA: float = 0.3
 
 @export var margem_ataque: float = 70.0
 const _IDLE_FRAME_H: float = 216.0
@@ -11,7 +13,6 @@ const _MOVE_FRAME_H: float = 299.0
 @export var velocidade: float = 80.0
 @export var vida_base: int = 30
 @export var material_drop: int = 1
-@export var slot_offset: float = 100.0  # offset de spawn; não afeta mais a distância de parada
 
 var vida_atual: int
 var _chegou_ao_slot: bool = false
@@ -88,6 +89,7 @@ func _flash_hit() -> void:
 func _atacar_player() -> void:
 	if _player and is_instance_valid(_player):
 		_player.receber_dano(DANO_BASE + GameManager.num_loops * 7)
+	_timer_ataque.wait_time = max(_RECARGA_MINIMA, _timer_ataque.wait_time - _REDUCAO_RECARGA)
 
 func _separar_de_outros_inimigos() -> void:
 	if not _player or abs(_player.global_position.x - global_position.x) <= margem_ataque:

@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var _som_botao: AudioStreamPlayer
+
 @onready var _label_materiais: Label = $VBoxContainer/LabelMateriais
 @onready var _botao_vida: Button = $VBoxContainer/BotaoVida
 @onready var _botao_dano: Button = $VBoxContainer/BotaoDano
@@ -7,6 +9,10 @@ extends CanvasLayer
 @onready var _botao_velocidade: Button = $VBoxContainer/BotaoVelocidade
 
 func _ready() -> void:
+	_som_botao = AudioStreamPlayer.new()
+	_som_botao.stream = preload("res://assets/sounds/bassattack.ogg")
+	_som_botao.volume_db = -5.0
+	add_child(_som_botao)
 	visible = false
 	GameManager.estado_mudou.connect(_on_estado_mudou)
 
@@ -34,6 +40,7 @@ func _on_vida_pressed() -> void:
 	var custo := GameManager.custo_upgrade(GameManager.CUSTO_BASE_VIDA, GameManager.nivel_upgrade_vida)
 	if GameManager.materiais < custo:
 		return
+	_som_botao.play()
 	GameManager.materiais -= custo
 	GameManager.nivel_upgrade_vida += 1
 	GameManager.vida_maxima += 25 + GameManager.num_loops * 15
@@ -45,6 +52,7 @@ func _on_dano_pressed() -> void:
 	var custo := GameManager.custo_upgrade(GameManager.CUSTO_BASE_DANO, GameManager.nivel_upgrade_dano)
 	if GameManager.materiais < custo:
 		return
+	_som_botao.play()
 	GameManager.materiais -= custo
 	GameManager.nivel_upgrade_dano += 1
 	var player := get_tree().get_first_node_in_group("player") as Player
@@ -56,6 +64,7 @@ func _on_recarga_pressed() -> void:
 	var custo := GameManager.custo_upgrade(GameManager.CUSTO_BASE_RECARGA, GameManager.nivel_upgrade_recarga)
 	if GameManager.materiais < custo:
 		return
+	_som_botao.play()
 	GameManager.materiais -= custo
 	GameManager.nivel_upgrade_recarga += 1
 	var player := get_tree().get_first_node_in_group("player") as Player
@@ -67,6 +76,7 @@ func _on_velocidade_pressed() -> void:
 	var custo := GameManager.custo_upgrade(GameManager.CUSTO_BASE_VELOCIDADE, GameManager.nivel_upgrade_velocidade)
 	if GameManager.materiais < custo:
 		return
+	_som_botao.play()
 	GameManager.materiais -= custo
 	GameManager.nivel_upgrade_velocidade += 1
 	var player := get_tree().get_first_node_in_group("player") as Player
@@ -75,4 +85,5 @@ func _on_velocidade_pressed() -> void:
 	_atualizar_botoes()
 
 func _on_continuar_pressed() -> void:
+	_som_botao.play()
 	GameManager.mudar_estado(GameManager.Estado.JOGANDO)

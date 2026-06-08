@@ -1,6 +1,7 @@
 extends Node2D
 
 var _fase_node: Node2D = null
+var _som_ambiente: AudioStreamPlayer
 
 var _fases: Array[PackedScene] = [
 	preload("res://scenes/world/Fase1.tscn"),
@@ -10,6 +11,13 @@ var _fases: Array[PackedScene] = [
 ]
 
 func _ready() -> void:
+	_som_ambiente = AudioStreamPlayer.new()
+	var stream := preload("res://assets/sounds/rain1.ogg") as AudioStreamOggVorbis
+	stream.loop = true
+	_som_ambiente.stream = stream
+	_som_ambiente.volume_db = -15.0
+	add_child(_som_ambiente)
+	_som_ambiente.play()
 	GameManager.registrar_player($Player)
 	GameManager.estado_mudou.connect(_on_estado_mudou)
 	_on_estado_mudou(GameManager.estado_atual)

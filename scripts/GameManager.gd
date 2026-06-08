@@ -10,7 +10,6 @@ const CUSTO_BASE_VIDA: int = 5
 const CUSTO_BASE_DANO: int = 8
 const CUSTO_BASE_RECARGA: int = 6
 const CUSTO_BASE_VELOCIDADE: int = 7
-const MULTIPLICADOR_CUSTO_UPGRADE: float = 2.0
 
 var estado_atual: Estado = Estado.INICIO
 var vida_atual: int = VIDA_INICIAL
@@ -25,7 +24,7 @@ var nivel_upgrade_recarga: int = 0
 var nivel_upgrade_velocidade: int = 0
 
 signal material_coletado(qtd: int)
-signal vida_atualizada(atual: int, max: int)
+signal vida_atualizada(atual: int, vida_max: int)
 signal poder_concedido(poder: String)
 signal estado_mudou(novo_estado: Estado)
 

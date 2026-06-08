@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 const VELOCIDADE_BASE: float = 150.0
-const IMPULSO_DESVIO: float = -400.0
 const GRAVIDADE: float = 980.0
 
 @export var velocidade: float = VELOCIDADE_BASE
@@ -17,6 +16,8 @@ var _sprite: AnimatedSprite2D
 var _tomando_dano: bool = false
 var _atacando: bool = false
 var _morrendo: bool = false
+var _som_ataque: AudioStreamPlayer
+var _som_dano: AudioStreamPlayer
 
 signal player_morreu
 
@@ -35,6 +36,14 @@ func _ready() -> void:
 	_timer_recarga_escudo.wait_time = 5.0
 	_timer_recarga_escudo.timeout.connect(_recarregar_escudo)
 	add_child(_timer_recarga_escudo)
+	_som_ataque = AudioStreamPlayer.new()
+	_som_ataque.stream = preload("res://assets/sounds/hit1.ogg")
+	_som_ataque.volume_db = -5.0
+	add_child(_som_ataque)
+	_som_dano = AudioStreamPlayer.new()
+	_som_dano.stream = preload("res://assets/sounds/fallsmall.ogg")
+	_som_dano.volume_db = -5.0
+	add_child(_som_dano)
 
 func _physics_process(delta: float) -> void:
 	var estados_ativos := [GameManager.Estado.JOGANDO, GameManager.Estado.BOSS]
@@ -52,9 +61,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVIDADE * delta
 
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		velocity.y = IMPULSO_DESVIO
-
 	if Input.is_action_just_pressed("atacar") and _timer_ataque.is_stopped() and not _atacando:
 		_ativar_hitbox()
 
@@ -69,13 +75,13 @@ func receber_dano(valor: int) -> void:
 		_escudo_carregado = false
 		_timer_recarga_escudo.start()
 		return
+	_som_dano.play()
+	_flash_hit()
 	GameManager.vida_atual -= valor
 	GameManager.vida_atualizada.emit(GameManager.vida_atual, GameManager.vida_maxima)
 	if GameManager.vida_atual <= 0:
 		_morrendo = true
 		_sprite.play("morte")
-	else:
-		_flash_hit()
 
 func reiniciar_posicao() -> void:
 	global_position = Vector2(100.0, 300.0)
@@ -90,8 +96,8 @@ func _flash_hit() -> void:
 	if _tomando_dano:
 		return
 	_tomando_dano = true
-	modulate = Color(1.5, 0.5, 0.5, 1.0)
-	await get_tree().create_timer(0.2).timeout
+	modulate = Color(1.0, 0.0, 0.0, 1.0)
+	await get_tree().create_timer(0.35).timeout
 	if is_inside_tree():
 		modulate = Color.WHITE
 	_tomando_dano = false
@@ -108,6 +114,7 @@ func _atualizar_animacao() -> void:
 func _ativar_hitbox() -> void:
 	_atacando = true
 	_sprite.play("attack")
+	_som_ataque.play()
 	if GameManager.Poder.RICOCHETE in GameManager.poderes_ativos:
 		_hitbox.scale = Vector2(1.8, 1.8)
 	if GameManager.Poder.ATAQUE_AREA in GameManager.poderes_ativos:
