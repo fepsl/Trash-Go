@@ -31,7 +31,7 @@ A versão Web foi reexportada com Godot 4.7.2 em 15/10/2026, incluindo as novas 
 
 O GitHub Pages publica `docs/` da branch `main` em https://fepsl.github.io/Trash-Go/. O preset Web exclui documentação e verificadores temporários do pacote do jogo.
 
-Para atualizar novamente, execute na raiz do projeto `godot --headless --path . --export-release Web docs/index.html` e envie os arquivos gerados para a branch `main`.
+Para atualizar novamente, execute na raiz do projeto `python tools/export_web.py --godot CAMINHO_DO_GODOT` e envie os arquivos gerados para a branch `main`. Esse exportador atribui nomes baseados no conteúdo aos arquivos do jogo para impedir que o navegador reutilize um pacote antigo do cache; `docs/index.html` continua sendo a página de entrada.
 
 ## Rolagem
 
