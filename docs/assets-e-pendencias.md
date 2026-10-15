@@ -32,6 +32,8 @@
 
 ## Cenários (4 fases)
 
+As quatro artes foram refeitas em pixel art e integradas com rolagem em duas faixas. PNGs finais em `assets/backgrounds/pixel/`; prévia, recortes e prompts em [arte-backgrounds.md](arte-backgrounds.md).
+
 ### Fase 1 — Rua da Cidade
 - Ambiente urbano poluído: lixeiras coloridas, prédios, postes, sacolas voando
 - Inimigos temáticos: sacos de lixo animados, garrafas PET
@@ -62,7 +64,7 @@ Cada fase usa 3 camadas:
 
 ### Prioridade alta
 - [ ] Criar sprites (usar Piskel para pixel art ou baixar pack no kenney.nl / itch.io)
-- [ ] Configurar AnimatedSprite2D no Player.tscn, Lixo.tscn, LixoEspecial.tscn, Boss.tscn
+- [x] Configurar AnimatedSprite2D no Player.tscn, Lixo.tscn, LixoEspecial.tscn, Boss.tscn — sprites novas em pixel art, com movimento, ataque e morte.
 - [ ] Montar as 4 fases no editor (tileset + SpawnPoints + background)
 - [ ] Testar loop completo: Fase1 → Boss → Upgrade → Fase2 → ... → Fase4
 
@@ -74,7 +76,7 @@ Cada fase usa 3 camadas:
 ### Prioridade baixa (polimento)
 - [ ] Paralaxe no background
 - [ ] Partículas de hit
-- [ ] Ícones dos poderes na HUD
+- [x] Ícones dos poderes na HUD — seis SVGs em `assets/icons/abilities/`, com estados bloqueado/ativo e descrições.
 
 ### Exportação (fazer antes da apresentação)
 - [ ] Configurar preset Web (HTML5) no Godot: Project → Export → Add → Web

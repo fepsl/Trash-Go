@@ -1,23 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://fase4tscn"]
+[gd_scene load_steps=5 format=3 uid="uid://fase4tscn"]
 
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="1_fase4"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/Industrial/fase4.jpg" id="2_back"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/pixel/fase4_fabrica.png" id="2_background"]
+[ext_resource type="Script" path="res://scripts/BackgroundFase.gd" id="3_background_script"]
 
 [sub_resource type="RectangleShape2D" id="BoxShape2D_chao"]
 size = Vector2(20000, 60)
 
 [node name="Fase4" type="Node2D"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="LayerBack" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 1.0)
-motion_mirroring = Vector2(2170, 0)
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LayerBack"]
-centered = false
-position = Vector2(0, -190)
-scale = Vector2(1.9, 1.9)
-texture = ExtResource("2_back")
+[node name="Cenario" type="CanvasLayer" parent="."]
+layer = -10
+script = ExtResource("3_background_script")
+textura = ExtResource("2_background")
+linha_chao = 724
+inicio_piso = 668
+velocidade_fundo = 0.65
+base_visual = 394.0
 
 [node name="InfoUI" type="CanvasLayer" parent="."]
 layer = 0

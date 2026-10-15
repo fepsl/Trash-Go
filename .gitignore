@@ -11,3 +11,8 @@ Thumbs.db
 # Editor configs
 *.tmp
 *.bak
+
+# Local verification scripts and logs
+/.*_check.gd
+/.*_check.gd.uid
+*.log

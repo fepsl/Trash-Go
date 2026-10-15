@@ -1,10 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://projetiltscn"]
+[gd_scene load_steps=17 format=3 uid="uid://projetiltscn"]
 
 [ext_resource type="Script" path="res://scripts/Projetil.gd" id="1_proj"]
-[ext_resource type="Texture2D" uid="uid://bu2r3tchnefex" path="res://assets/effects/Super Pixel Effects Gigapack (Free Version)/PNG/Explosions/epic_explosion_001/epic_explosion_001_small_orange/frame0000.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/projectiles/projetil_reciclavel_sheet.png" id="2_sheet"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 8.0
+
+[sub_resource type="AtlasTexture" id="Atlas_voo1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 0, 362, 362)
+margin = Rect2(237, 45, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(362, 0, 362, 362)
+margin = Rect2(245, 48, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(724, 0, 362, 362)
+margin = Rect2(259, 42, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(1086, 0, 362, 362)
+margin = Rect2(243, 47, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo5"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 362, 362, 362)
+margin = Rect2(232, 57, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo6"]
+atlas = ExtResource("2_sheet")
+region = Rect2(362, 362, 362, 362)
+margin = Rect2(250, 58, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo7"]
+atlas = ExtResource("2_sheet")
+region = Rect2(724, 362, 362, 362)
+margin = Rect2(243, 52, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_voo8"]
+atlas = ExtResource("2_sheet")
+region = Rect2(1086, 362, 362, 362)
+margin = Rect2(250, 56, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_impacto1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 724, 362, 362)
+margin = Rect2(320, 89, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_impacto2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(362, 724, 362, 362)
+margin = Rect2(324, 90, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_impacto3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(724, 724, 362, 362)
+margin = Rect2(334, 92, 406, 150)
+
+[sub_resource type="AtlasTexture" id="Atlas_impacto4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(1086, 724, 362, 362)
+margin = Rect2(328, 89, 406, 150)
+
+[sub_resource type="SpriteFrames" id="FramesProjetil"]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("Atlas_voo1")}, {"duration": 1.0, "texture": SubResource("Atlas_voo2")}, {"duration": 1.0, "texture": SubResource("Atlas_voo3")}, {"duration": 1.0, "texture": SubResource("Atlas_voo4")}, {"duration": 1.0, "texture": SubResource("Atlas_voo5")}, {"duration": 1.0, "texture": SubResource("Atlas_voo6")}, {"duration": 1.0, "texture": SubResource("Atlas_voo7")}, {"duration": 1.0, "texture": SubResource("Atlas_voo8")}], "loop": true, "name": &"voo", "speed": 16.0}, {"frames": [{"duration": 1.0, "texture": SubResource("Atlas_impacto1")}, {"duration": 1.0, "texture": SubResource("Atlas_impacto2")}, {"duration": 1.0, "texture": SubResource("Atlas_impacto3")}, {"duration": 1.0, "texture": SubResource("Atlas_impacto4")}], "loop": false, "name": &"impacto", "speed": 18.0}]
 
 [node name="Projetil" type="Area2D"]
 collision_mask = 5
@@ -12,9 +75,18 @@ monitoring = true
 monitorable = false
 script = ExtResource("1_proj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tex")
-scale = Vector2(0.5, 0.5)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("FramesProjetil")
+animation = &"voo"
+autoplay = "voo"
+centered = false
+offset = Vector2(-512, -256)
+scale = Vector2(0.14, 0.14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1")
+
+[node name="TimerVida" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true

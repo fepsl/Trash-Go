@@ -1,214 +1,399 @@
-[gd_scene load_steps=8 format=3 uid="uid://hudtscn"]
+[gd_scene load_steps=14 format=3 uid="uid://hudtscn"]
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_hud"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame01a.png" id="2_frame01"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Bar01a.png" id="3_bar01"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_BarFill01a.png" id="4_barfill"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png" id="5_slot01a"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot02a.png" id="6_slot02a"]
-[ext_resource type="Texture2D" path="res://assets/HUD/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot02c.png" id="7_slot02c"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/frame_panel.svg" id="2_panel"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/frame_portrait.svg" id="3_portrait_frame"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/heart.svg" id="4_heart"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/material.svg" id="5_material"]
+[ext_resource type="Texture2D" path="res://assets/sprites/personagem_pixel_art_sheet.png" id="6_hero"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/slot_locked.svg" id="7_slot_locked"]
+[ext_resource type="Texture2D" path="res://assets/HUD/pixel/slot_active.svg" id="8_slot_active"]
+
+[sub_resource type="AtlasTexture" id="Portrait"]
+atlas = ExtResource("6_hero")
+region = Rect2(94, 43, 102, 103)
+
+[sub_resource type="StyleBoxFlat" id="BarBackground"]
+bg_color = Color(0.025, 0.065, 0.09, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.32, 0.32, 1)
+
+[sub_resource type="StyleBoxFlat" id="BarFill"]
+bg_color = Color(0.53, 0.87, 0.48, 1)
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0.7, 0.96, 0.59, 1)
+
+[sub_resource type="StyleBoxFlat" id="DamageFill"]
+bg_color = Color(0.91, 0.43, 0.4, 1)
+
+[sub_resource type="StyleBoxEmpty" id="TransparentBackground"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 2
 visible = false
 script = ExtResource("1_hud")
-textura_slot_ativo = ExtResource("7_slot02c")
-textura_slot_inativo = ExtResource("6_slot02a")
+textura_slot_ativo = ExtResource("8_slot_active")
+textura_slot_inativo = ExtResource("7_slot_locked")
 
 [node name="PainelVida" type="NinePatchRect" parent="."]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 320.0
-offset_bottom = 72.0
-texture = ExtResource("2_frame01")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 382.0
+offset_bottom = 106.0
+texture = ExtResource("2_panel")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+mouse_filter = 2
 
-[node name="ConteudoVida" type="HBoxContainer" parent="PainelVida"]
+[node name="RetratoMoldura" type="TextureRect" parent="PainelVida"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 76.0
+offset_bottom = 74.0
+texture = ExtResource("3_portrait_frame")
+texture_filter = 1
+mouse_filter = 2
+
+[node name="Retrato" type="TextureRect" parent="PainelVida/RetratoMoldura"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 58.0
+texture = SubResource("Portrait")
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="ConteudoVida" type="Control" parent="PainelVida"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 6.0
-offset_right = -8.0
-offset_bottom = -6.0
-theme_override_constants/separation = 5
+offset_left = 90.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = -16.0
+mouse_filter = 2
 
-[node name="LabelIconeVida" type="Label" parent="PainelVida/ConteudoVida"]
-custom_minimum_size = Vector2(24, 0)
-size_flags_vertical = 4
-text = "♥"
-vertical_alignment = 1
-theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 22
+[node name="IconeVida" type="TextureRect" parent="PainelVida/ConteudoVida"]
+offset_top = 1.0
+offset_right = 18.0
+offset_bottom = 19.0
+texture = ExtResource("4_heart")
+texture_filter = 1
+expand_mode = 1
+mouse_filter = 2
 
-[node name="BarraVida" type="TextureProgressBar" parent="PainelVida/ConteudoVida"]
-size_flags_horizontal = 3
-size_flags_vertical = 4
-custom_minimum_size = Vector2(150, 28)
-nine_patch_stretch = true
-texture_under = ExtResource("3_bar01")
-texture_progress = ExtResource("4_barfill")
-max_value = 100.0
-value = 100.0
-tint_progress = Color(0.2, 0.85, 0.3, 1)
+[node name="Titulo" type="Label" parent="PainelVida/ConteudoVida"]
+offset_left = 25.0
+offset_top = -1.0
+offset_right = 110.0
+offset_bottom = 22.0
+text = "VIDA"
+theme_override_colors/font_color = Color(0.71, 0.82, 0.77, 1)
+theme_override_font_sizes/font_size = 13
+mouse_filter = 2
 
 [node name="LabelVida" type="Label" parent="PainelVida/ConteudoVida"]
-custom_minimum_size = Vector2(80, 0)
-size_flags_vertical = 4
-text = "100/100"
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -118.0
+offset_top = -1.0
+offset_bottom = 23.0
+text = "150 / 150"
 horizontal_alignment = 2
-vertical_alignment = 1
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.92, 0.97, 0.87, 1)
+theme_override_font_sizes/font_size = 17
+mouse_filter = 2
+
+[node name="BarraMoldura" type="Panel" parent="PainelVida/ConteudoVida"]
+anchor_right = 1.0
+offset_top = 29.0
+offset_bottom = 49.0
+theme_override_styles/panel = SubResource("BarBackground")
+mouse_filter = 2
+
+[node name="BarraDano" type="ProgressBar" parent="PainelVida/ConteudoVida"]
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = -2.0
+offset_bottom = 47.0
+theme_override_styles/background = SubResource("TransparentBackground")
+theme_override_styles/fill = SubResource("DamageFill")
+max_value = 150.0
+value = 150.0
+show_percentage = false
+mouse_filter = 2
+
+[node name="BarraVida" type="ProgressBar" parent="PainelVida/ConteudoVida"]
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = -2.0
+offset_bottom = 47.0
+theme_override_styles/background = SubResource("TransparentBackground")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 150.0
+value = 150.0
+show_percentage = false
+mouse_filter = 2
 
 [node name="PainelMateriais" type="NinePatchRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 72.0
-texture = ExtResource("5_slot01a")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+offset_left = -232.0
+offset_top = 18.0
+offset_right = -20.0
+offset_bottom = 106.0
+texture = ExtResource("2_panel")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+mouse_filter = 2
 
-[node name="ConteudoMateriais" type="HBoxContainer" parent="PainelMateriais"]
+[node name="IconeMaterial" type="TextureRect" parent="PainelMateriais"]
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 62.0
+offset_bottom = 68.0
+texture = ExtResource("5_material")
+texture_filter = 1
+mouse_filter = 2
+
+[node name="ConteudoMateriais" type="Control" parent="PainelMateriais"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 4.0
-offset_right = -8.0
-offset_bottom = -4.0
-alignment = 1
-theme_override_constants/separation = 5
+offset_left = 74.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = -16.0
+mouse_filter = 2
 
-[node name="LabelIconeMat" type="Label" parent="PainelMateriais/ConteudoMateriais"]
-size_flags_vertical = 4
-text = "♻"
-vertical_alignment = 1
-theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1)
-theme_override_font_sizes/font_size = 22
+[node name="Titulo" type="Label" parent="PainelMateriais/ConteudoMateriais"]
+anchor_right = 1.0
+offset_bottom = 20.0
+text = "MATERIAIS"
+theme_override_colors/font_color = Color(0.71, 0.82, 0.77, 1)
+theme_override_font_sizes/font_size = 12
+mouse_filter = 2
 
 [node name="LabelMateriais" type="Label" parent="PainelMateriais/ConteudoMateriais"]
-size_flags_vertical = 4
+anchor_right = 1.0
+offset_top = 21.0
+offset_bottom = 53.0
 text = "0"
-vertical_alignment = 1
-theme_override_font_sizes/font_size = 16
-
+theme_override_colors/font_color = Color(0.79, 0.95, 0.6, 1)
+theme_override_font_sizes/font_size = 27
+mouse_filter = 2
 
 [node name="PainelPoderes" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -74.0
-offset_right = 400.0
-offset_bottom = -10.0
-theme_override_constants/separation = 6
+offset_left = 16.0
+offset_top = -102.0
+offset_right = 488.0
+offset_bottom = -16.0
+theme_override_constants/separation = 8
+mouse_filter = 2
 
 [node name="SlotPoder0" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder0"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder0"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="SlotPoder1" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder1"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder1"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="SlotPoder2" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder2"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder2"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="SlotPoder3" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder3"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder3"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="SlotPoder4" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder4"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder4"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="SlotPoder5" type="NinePatchRect" parent="PainelPoderes"]
-custom_minimum_size = Vector2(60, 60)
-texture = ExtResource("6_slot02a")
+custom_minimum_size = Vector2(72, 86)
+texture = ExtResource("7_slot_locked")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+mouse_filter = 0
 
-[node name="Icone" type="Label" parent="PainelPoderes/SlotPoder5"]
+[node name="Icone" type="TextureRect" parent="PainelPoderes/SlotPoder5"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = ""
+offset_left = 5.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Estado" type="Label" parent="PainelPoderes/SlotPoder5"]
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -3.0
+text = "—"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = false
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+mouse_filter = 2
 
 [node name="NotifPoder" type="Label" parent="."]
 anchor_left = 0.5

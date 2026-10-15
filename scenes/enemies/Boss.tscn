@@ -1,7 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://bosstscn"]
+[gd_scene load_steps=24 format=3 uid="uid://bosstscn"]
 
 [ext_resource type="Script" path="res://scripts/Boss.gd" id="1_boss"]
-[ext_resource type="Texture2D" path="res://assets/sprites/mostro.png" id="2_sheet"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/boss_pixel_sheet.png" id="2_sheet"]
+
+[ext_resource type="Script" path="res://scripts/SombraInimigo.gd" id="3_shadow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_corpo"]
 radius = 36.0
@@ -16,170 +18,103 @@ radius = 120.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(20, 122, 370, 216)
+region = Rect2(47, 81, 222, 206)
+margin = Rect2(81, 85, 162, 114)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
 atlas = ExtResource("2_sheet")
-region = Rect2(430, 122, 370, 216)
+region = Rect2(361, 85, 219, 201)
+margin = Rect2(83, 90, 165, 119)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
 atlas = ExtResource("2_sheet")
-region = Rect2(839, 122, 370, 216)
+region = Rect2(664, 83, 219, 204)
+margin = Rect2(82, 87, 165, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle4"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1249, 122, 369, 216)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle5"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1659, 122, 369, 216)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle6"]
-atlas = ExtResource("2_sheet")
-region = Rect2(20, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle7"]
-atlas = ExtResource("2_sheet")
-region = Rect2(429, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle8"]
-atlas = ExtResource("2_sheet")
-region = Rect2(839, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle9"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1259, 460, 359, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle10"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1658, 460, 370, 217)
+region = Rect2(978, 85, 215, 202)
+margin = Rect2(84, 89, 169, 118)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(20, 716, 370, 299)
+region = Rect2(47, 383, 237, 204)
+margin = Rect2(81, 87, 147, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move2"]
 atlas = ExtResource("2_sheet")
-region = Rect2(429, 716, 370, 299)
+region = Rect2(361, 386, 230, 201)
+margin = Rect2(83, 90, 154, 119)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move3"]
 atlas = ExtResource("2_sheet")
-region = Rect2(849, 716, 360, 299)
+region = Rect2(664, 380, 233, 209)
+margin = Rect2(82, 82, 151, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move4"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1259, 716, 359, 299)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_move5"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1658, 716, 370, 299)
+region = Rect2(974, 388, 233, 201)
+margin = Rect2(80, 90, 151, 119)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_attack1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(20, 1054, 370, 308)
+region = Rect2(47, 703, 230, 193)
+margin = Rect2(81, 98, 154, 127)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_attack2"]
 atlas = ExtResource("2_sheet")
-region = Rect2(429, 1054, 380, 308)
+region = Rect2(365, 659, 211, 236)
+margin = Rect2(87, 55, 173, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_attack3"]
 atlas = ExtResource("2_sheet")
-region = Rect2(849, 1054, 360, 308)
+region = Rect2(588, 698, 324, 197)
+margin = Rect2(6, 94, 60, 123)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_attack4"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1249, 1054, 370, 308)
+region = Rect2(975, 698, 234, 197)
+margin = Rect2(81, 94, 150, 123)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_attack5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1658, 1054, 370, 308)
+region = Rect2(41, 980, 242, 212)
+margin = Rect2(75, 79, 142, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(333, 998, 278, 195)
+margin = Rect2(55, 96, 106, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(636, 1015, 283, 178)
+margin = Rect2(54, 113, 101, 142)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(968, 1063, 257, 135)
+margin = Rect2(74, 156, 127, 185)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle9")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle10")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move5")
-}],
-"loop": true,
-"name": &"move",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_attack1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_attack2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_attack3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_attack4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_attack5")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 8.0
-}]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_idle1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle4")}], "loop": true, "name": &"idle", "speed": 5.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_move1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move4")}], "loop": true, "name": &"move", "speed": 8.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_attack1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack4")}], "loop": false, "name": &"attack", "speed": 12.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_morte1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte4")}], "loop": false, "name": &"morte", "speed": 8.0}]
 
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 1
 script = ExtResource("1_boss")
 
+[node name="Sombra" type="Node2D" parent="."]
+script = ExtResource("3_shadow")
+base = 108.0
+largura = 74.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 33)
-scale = Vector2(1.0, 1.0)
+texture_filter = 1
+position = Vector2(0, 108.0)
+scale = Vector2(1.2, 1.2)
+centered = false
+offset = Vector2(-192, -288)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"idle"
 autoplay = "idle"

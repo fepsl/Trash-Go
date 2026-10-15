@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://lixotscn"]
+[gd_scene load_steps=23 format=3 uid="uid://lixotscn"]
 
 [ext_resource type="Script" path="res://scripts/Inimigo.gd" id="1_inimigo"]
-[ext_resource type="Texture2D" path="res://assets/sprites/mostro.png" id="2_sheet"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/lixo_pixel_sheet.png" id="2_sheet"]
+
+[ext_resource type="Script" path="res://scripts/SombraInimigo.gd" id="3_shadow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_corpo"]
 radius = 28.0
@@ -13,130 +15,103 @@ height = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(20, 122, 370, 216)
+region = Rect2(68, 101, 195, 197)
+margin = Rect2(94, 94, 189, 123)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
 atlas = ExtResource("2_sheet")
-region = Rect2(430, 122, 370, 216)
+region = Rect2(384, 101, 198, 198)
+margin = Rect2(93, 93, 186, 122)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
 atlas = ExtResource("2_sheet")
-region = Rect2(839, 122, 370, 216)
+region = Rect2(687, 100, 197, 199)
+margin = Rect2(93, 92, 187, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle4"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1249, 122, 369, 216)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle5"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1659, 122, 369, 216)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle6"]
-atlas = ExtResource("2_sheet")
-region = Rect2(20, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle7"]
-atlas = ExtResource("2_sheet")
-region = Rect2(429, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle8"]
-atlas = ExtResource("2_sheet")
-region = Rect2(839, 460, 370, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle9"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1259, 460, 359, 217)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle10"]
-atlas = ExtResource("2_sheet")
-region = Rect2(1658, 460, 370, 217)
+region = Rect2(999, 100, 198, 199)
+margin = Rect2(93, 92, 186, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(20, 716, 370, 299)
+region = Rect2(63, 400, 208, 202)
+margin = Rect2(89, 89, 176, 118)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move2"]
 atlas = ExtResource("2_sheet")
-region = Rect2(429, 716, 370, 299)
+region = Rect2(379, 394, 211, 208)
+margin = Rect2(88, 83, 173, 112)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move3"]
 atlas = ExtResource("2_sheet")
-region = Rect2(849, 716, 360, 299)
+region = Rect2(687, 393, 217, 213)
+margin = Rect2(93, 78, 167, 107)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_move4"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1259, 716, 359, 299)
+region = Rect2(1004, 396, 202, 206)
+margin = Rect2(98, 85, 182, 114)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_move5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_attack1"]
 atlas = ExtResource("2_sheet")
-region = Rect2(1658, 716, 370, 299)
+region = Rect2(62, 693, 207, 190)
+margin = Rect2(88, 101, 177, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_attack2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(388, 672, 182, 211)
+margin = Rect2(97, 80, 202, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_attack3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(626, 711, 283, 172)
+margin = Rect2(32, 119, 101, 148)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_attack4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(1002, 693, 206, 190)
+margin = Rect2(96, 101, 178, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(50, 966, 239, 210)
+margin = Rect2(76, 81, 145, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(350, 1014, 267, 162)
+margin = Rect2(59, 129, 117, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(665, 1035, 252, 145)
+margin = Rect2(71, 146, 132, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_morte4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(981, 1081, 226, 96)
+margin = Rect2(75, 195, 158, 224)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle9")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle10")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_move5")
-}],
-"loop": true,
-"name": &"move",
-"speed": 8.0
-}]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_idle1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_idle4")}], "loop": true, "name": &"idle", "speed": 5.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_move1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_move4")}], "loop": true, "name": &"move", "speed": 8.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_attack1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_attack4")}], "loop": false, "name": &"attack", "speed": 12.0}, {"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_morte1")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte2")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte3")}, {"duration": 1.0, "texture": SubResource("AtlasTexture_morte4")}], "loop": false, "name": &"morte", "speed": 8.0}]
 
 [node name="Lixo" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 1
 script = ExtResource("1_inimigo")
 
+[node name="Sombra" type="Node2D" parent="."]
+script = ExtResource("3_shadow")
+base = 88.0
+largura = 36.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 55)
-scale = Vector2(0.44, 0.44)
+texture_filter = 1
+position = Vector2(0, 88.0)
+scale = Vector2(0.65, 0.65)
+centered = false
+offset = Vector2(-192, -288)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"idle"
 autoplay = "idle"
