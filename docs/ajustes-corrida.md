@@ -25,6 +25,14 @@ Verificado no Godot 4.7.2 com OpenGL: corrida, transições para ataque e idle, 
 
 ![Oito poses da corrida](corrida-preview.png)
 
+## Publicação Web
+
+A versão Web foi reexportada com Godot 4.7.2 em 15/10/2026, incluindo as novas artes, HUD, cenários, projéteis e a corrida com movimento do tronco e sem o efeito extra na garra. Essa exportação substitui a versão anterior mencionada nas verificações acima.
+
+O GitHub Pages publica `docs/` da branch `main` em https://fepsl.github.io/Trash-Go/. O preset Web exclui documentação e verificadores temporários do pacote do jogo.
+
+Para atualizar novamente, execute na raiz do projeto `godot --headless --path . --export-release Web docs/index.html` e envie os arquivos gerados para a branch `main`.
+
 ## Rolagem
 
 | Fase | Velocidade anterior | Velocidade atual | Movimento do fundo por 200 px de câmera |
