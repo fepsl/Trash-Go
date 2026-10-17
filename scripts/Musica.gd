@@ -23,6 +23,9 @@ func _ready() -> void:
 			silenciada = mudo
 	_player = AudioStreamPlayer.new()
 	_player.name = "TrilhaSonora"
+	# A playlist longa precisa ser decodificada aos poucos; no modo Sample,
+	# a exportação Web tenta alocar a faixa inteira e esgota a memória.
+	_player.playback_type = AudioServer.PLAYBACK_TYPE_STREAM
 	var trilha := preload("res://assets/sounds/musica_lofi.ogg") as AudioStreamOggVorbis
 	trilha.loop = true
 	_player.stream = trilha

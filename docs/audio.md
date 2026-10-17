@@ -5,6 +5,7 @@ A playlist fornecida pelo usuário substitui o som ambiente de chuva. A faixa co
 ## Comportamento
 
 - A música começa com o jogo e toca em loop.
+- A trilha usa `AudioServer.PLAYBACK_TYPE_STREAM` para decodificar aos poucos. O modo padrão Sample da exportação Web tentava expandir os 84 minutos de áudio na memória e causava uma falha de inicialização (`index out of bounds` / `memory access out of bounds`).
 - O volume inicial é 25%; o controle permite ajustar de 0 a 100% e silenciar/restaurar sem perder o nível escolhido.
 - O painel fica ancorado no canto inferior direito, acima dos menus, disponível na entrada, durante a partida, na oficina e no game over.
 - A preferência de volume e silêncio fica salva em `user://audio.cfg`.
@@ -29,3 +30,5 @@ A playlist fornecida pelo usuário substitui o som ambiente de chuva. A faixa co
 Validado no Godot 4.7.2: duração completa, reprodução e loop no final da faixa; ajustes de 0%, 64% e 100%; silêncio e restauração; salvamento do volume; efeitos sonoros preservados; posição e visibilidade do painel; ausência de sobreposição com o botão de continuar; persistência da reprodução e do controle após recarregar a cena. As capturas da entrada, da partida e da oficina foram inspecionadas visualmente.
 
 A exportação Web em `docs/index.html` foi regenerada com `tools/export_web.py`, com nomes de arquivos atualizados por hash.
+
+O erro de memória foi reproduzido no Chromium com a exportação anterior. Após forçar o modo Stream apenas na trilha longa, a nova exportação abriu e iniciou a partida. O teste mediu saída de áudio presente, silêncio ao usar o botão e saída restaurada ao reativar a música; também ajustou o slider e confirmou ausência de erros de script no navegador.
