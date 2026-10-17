@@ -1,11 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <rect width="128" height="128" rx="16" fill="#2e7d32"/>
-  <g fill="#ffffff" transform="translate(64,64)">
-    <path d="M0,-36 L10,-18 L-10,-18 Z"/>
-    <path d="M31.2,18 L12,18 L22,0 Z" transform="rotate(120)"/>
-    <path d="M31.2,18 L12,18 L22,0 Z" transform="rotate(240)"/>
-    <rect x="-4" y="-26" width="8" height="20" rx="4"/>
-    <rect x="-4" y="-26" width="8" height="20" rx="4" transform="rotate(120)"/>
-    <rect x="-4" y="-26" width="8" height="20" rx="4" transform="rotate(240)"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <!-- Ícone Trash Go: lixeira de reciclagem em uma grade de 32 pixels. -->
+  <path d="M6 0h20v2h4v4h2v20h-2v4h-4v2H6v-2H2v-4H0V6h2V2h4Z" fill="#0b1924"/>
+  <path d="M6 1h20v1H6ZM2 6h1v20H2ZM29 6h1v20h-1ZM6 29h20v1H6Z" fill="#527069"/>
+  <path d="M6 3h8v1H6ZM3 6h1v6H3Z" fill="#a5e6a1"/>
+  <!-- Alça e tampa âmbar. -->
+  <path d="M12 5h8v3h-3V7h-2v1h-3Z" fill="#fff1d2"/>
+  <path d="M7 8h18v4H7Z" fill="#efbe78"/>
+  <path d="M8 8h16v1H8Z" fill="#fff1d2"/>
+  <path d="M7 11h18v1H7Z" fill="#946b47"/>
+  <!-- Corpo, luz lateral e sombra na base. -->
+  <path d="M9 12h14v13h-2v2H11v-2H9Z" fill="#76be85"/>
+  <path d="M10 13h2v11h-2Z" fill="#a5e6a1"/>
+  <path d="M21 13h2v12h-2ZM12 25h9v2h-9Z" fill="#407a62"/>
+  <!-- Três setas do símbolo de reciclagem, sem detalhes finos. -->
+  <path d="M15 14h3v1h1v2h-3v-1h-2v1h-2v-1h1v-1h2Z" fill="#fff1d2"/>
+  <path d="M20 18h1v3h-1v2h-4v-2h3v-1h-1v-2Z" fill="#fff1d2"/>
+  <path d="M12 18h3v2h-1v1h1v2h-3v-1h-1v-3h1Z" fill="#fff1d2"/>
+  <path d="M10 27h3v2h-3ZM20 27h3v2h-3Z" fill="#efbe78"/>
 </svg>

@@ -38,11 +38,15 @@ def main():
     html = html.replace('index.', base + '.')
     entry.write_text(html, encoding='utf-8')
 
-    # Remove apenas saídas de exportação conhecidas; preserva a página index.html.
-    if old_base and old_base != base and re.fullmatch(r'index|game-[0-9a-f]{12}', old_base):
-        for extension in extensions:
-            for suffix in ('', '.import'):
-                (docs / f'{old_base}.{extension}{suffix}').unlink(missing_ok=True)
+    # A página HTML pode continuar em cache após a publicação. Preservar também
+    # o build anterior evita 404 nos arquivos que ela ainda está referenciando.
+    keep = {base, old_base}
+    known_extensions = '|'.join(re.escape(extension) for extension in extensions)
+    known_output = re.compile(rf'(game-[0-9a-f]{{12}})\.({known_extensions})(?:\.import)?')
+    for asset in docs.iterdir():
+        match = known_output.fullmatch(asset.name)
+        if match and match.group(1) not in keep and asset.is_file():
+            asset.unlink()
     print(f'WEB_EXPORT_OK: {base}')
 
 
