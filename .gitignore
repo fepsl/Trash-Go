@@ -16,3 +16,7 @@ Thumbs.db
 /.*_check.gd
 /.*_check.gd.uid
 *.log
+
+# Python tooling caches
+__pycache__/
+*.py[cod]
