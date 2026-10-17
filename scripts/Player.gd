@@ -86,11 +86,17 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVIDADE * delta
 
-	if Input.is_action_just_pressed("atacar") and _timer_ataque.is_stopped() and not _atacando:
+	if Input.is_action_just_pressed("atacar") and _timer_ataque.is_stopped() and not _atacando and not _ponteiro_sobre_interface():
 		_ativar_hitbox()
 
 	move_and_slide()
 	_atualizar_animacao()
+
+func _ponteiro_sobre_interface() -> bool:
+	for controle in get_tree().get_nodes_in_group("bloqueia_ataque"):
+		if controle is Control and controle.is_visible_in_tree() and controle.get_global_rect().has_point(controle.get_global_mouse_position()):
+			return true
+	return false
 
 func receber_dano(valor: int) -> void:
 	var estados_ativos := [GameManager.Estado.JOGANDO, GameManager.Estado.BOSS]

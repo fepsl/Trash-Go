@@ -567,6 +567,12 @@ Poderes são acumulativos e persistem pelo resto da sessão (sem save). Ao compl
 
 ## Interface (HUD e Telas)
 
+Os menus de entrada e upgrades usam a arte pixel das fases, tons de verde, âmbar e azul escuro, partículas discretas e transições suaves. A entrada apresenta o logotipo Trash Go, o botão de início e os controles. A oficina mostra quatro cartões com ícone, nível, benefício, custo e indicação de materiais faltantes; o fundo acompanha a próxima fase. As compras atualizam o saldo da oficina e da HUD imediatamente.
+
+Prévias e detalhes de edição: [Arte dos menus](docs/arte-menus.md).
+
+O canto inferior direito mantém um controle de música em todas as telas, com volume de 0 a 100% e botão para silenciar. O ajuste é salvo para as próximas sessões. A playlist lofi substitui a chuva, toca em loop e continua durante as trocas de fase e os reinícios. Detalhes: [Música e volume](docs/audio.md).
+
 ### Visibilidade por estado
 
 | Elemento | INICIO | JOGANDO | BOSS | UPGRADE | GAME_OVER |
